@@ -14,18 +14,21 @@ const array = [
     name: "Pinarello",
     price: 1800,
     des: "abc hjshfj jhdjhfj lkxjkcn  jhrjbf  jzhdjsbf vfgfg abc hjshfj jhdjhfj lkxjkcn abc hjshfj jhdjhfj lkxjkcn",
+    type: "roadBike",
   },
   {
     img: require("../img/bione-removebg-preview.png"),
     name: "Pinarello",
     price: 1800,
     des: "abc hjshfj jhdjhfj lkxjkcn  jhrjbf  jzhdjsbf vfgfg abc hjshfj jhdjhfj lkxjkcn abc hjshfj jhdjhfj lkxjkcn",
+    type: "roadBike",
   },
   {
     img: require("../img/bifour_-removebg-preview.png"),
     name: "Pinarello",
     price: 1800,
     des: "abc hjshfj jhdjhfj lkxjkcn  jhrjbf  jzhdjsbf vfgfg abc hjshfj jhdjhfj lkxjkcn abc hjshfj jhdjhfj lkxjkcn",
+    type: "roadBike",
   },
 
   {
@@ -33,22 +36,26 @@ const array = [
     name: "Pinarello",
     price: 1800,
     des: "abc hjshfj jhdjhfj lkxjkcn  jhrjbf  jzhdjsbf vfgfg abc hjshfj jhdjhfj lkxjkcn abc hjshfj jhdjhfj lkxjkcn",
+    type: "roadBike",
   },
   {
     img: require("../img/bithree_removebg-preview.png"),
     name: "Pinarello",
     price: 1800,
     des: "abc hjshfj jhdjhfj lkxjkcn  jhrjbf  jzhdjsbf vfgfg abc hjshfj jhdjhfj lkxjkcn abc hjshfj jhdjhfj lkxjkcn",
+    type: "Mountain",
   },
   {
     img: require("../img/bifour_-removebg-preview.png"),
     name: "Pinarello",
     price: 1800,
     des: "abc hjshfj jhdjhfj lkxjkcn  jhrjbf  jzhdjsbf vfgfg abc hjshfj jhdjhfj lkxjkcn abc hjshfj jhdjhfj lkxjkcn",
+    type: "Mountain",
   },
 ];
 
 const ChoiceBike = ({ navigation, route }) => {
+  const [filter, setFilter] = React.useState(array);
   return (
     <View style={styles.container}>
       <Text
@@ -63,22 +70,43 @@ const ChoiceBike = ({ navigation, route }) => {
       </Text>
 
       <View style={styles.button}>
-        <TouchableOpacity style={styles.press}>
+        <TouchableOpacity
+          style={styles.press}
+          onPress={() => {
+            setFilter(array); // Clear the filter to show all items
+          }}
+        >
           <Text>All</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.press}>
+        <TouchableOpacity
+          style={styles.press}
+          onPress={() => {
+            var newArr = array.filter((item) => {
+              return item.type == "roadBike";
+            });
+            setFilter([...newArr]);
+          }}
+        >
           <Text>RoadBike</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.press}>
+        <TouchableOpacity
+          style={styles.press}
+          onPress={() => {
+            var newArr = array.filter((item) => {
+              return item.type == "Mountain";
+            });
+            setFilter([...newArr]);
+          }}
+        >
           <Text>Mountain</Text>
         </TouchableOpacity>
       </View>
 
       <FlatList
         numColumns={2}
-        data={array}
+        data={filter}
         renderItem={({ item }) => {
           return (
             <View style={styles.abc}>
@@ -106,6 +134,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
   },
   button: {
     marginTop: 30,

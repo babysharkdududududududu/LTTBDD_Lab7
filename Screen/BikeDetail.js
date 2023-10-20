@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 const BikeDetail = ({ navigation, route }) => {
   console.log(route.params);
-  const [isLiked, setIsLiked] = React.useState(false);
+  const [choice, setChoice] = React.useState(false);
   const { item } = route.params;
   return (
     <View style={styles.container}>
@@ -48,15 +48,20 @@ const BikeDetail = ({ navigation, route }) => {
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <TouchableOpacity
           style={{ position: "absolute", top: 45, left: 30 }}
-          onPress={() => setIsLiked(!isLiked)} // Toggle the isLiked state
+          onPress={() => setChoice(!choice)}
         >
           <AntDesign
-            name={isLiked ? "heart" : "hearto"} // Use "heart" if liked, "hearto" if not
+            name={choice ? "heart" : "hearto"}
             size={24}
-            color={isLiked ? "red" : "black"} // Change color to red if liked
+            color={choice ? "red" : "black"}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("ChoiceBike");
+          }}
+        >
           <Text
             style={{
               width: 160,
