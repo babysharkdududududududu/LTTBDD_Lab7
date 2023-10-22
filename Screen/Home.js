@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 0.1,
-
     fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
