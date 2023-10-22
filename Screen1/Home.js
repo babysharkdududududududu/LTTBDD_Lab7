@@ -7,6 +7,7 @@ import {
   Image,
 } from "react-native";
 import React from "react";
+import { AntDesign } from "@expo/vector-icons";
 
 const array = [
   {
@@ -138,6 +139,21 @@ const Home = ({ navigation, route }) => {
                   <Text style={{ fontWeight: "bold", marginTop: 15 }}>
                     {item.price}
                   </Text>
+                </View>
+                <View
+                  style={{
+                    width: 40,
+                    height: 30,
+                    backgroundColor: "#f1b000",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    bottom: 0,
+                    right: 10,
+                    borderTopStartRadius: 20,
+                  }}
+                >
+                  <AntDesign name="plus" size={24} color="white" />
                 </View>
               </View>
             </TouchableOpacity>
