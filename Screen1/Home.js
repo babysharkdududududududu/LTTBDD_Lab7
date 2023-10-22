@@ -16,6 +16,7 @@ const array = [
     title: "Spicy tasty donut family",
     price: "$10.00",
     des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    type: "pink",
   },
   {
     img: require("../img/donut_yellow 1.png"),
@@ -23,6 +24,7 @@ const array = [
     title: "Spicy tasty donut family",
     price: "$20.00",
     des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    type: "pink",
   },
   {
     img: require("../img/green_donut 1.png"),
@@ -30,6 +32,7 @@ const array = [
     title: "Spicy tasty donut family",
     price: "$30.00",
     des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    type: "pink",
   },
   {
     img: require("../img/tasty_donut 1.png"),
@@ -37,9 +40,12 @@ const array = [
     title: "Spicy tasty donut family",
     price: "$10.00",
     des: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+    type: "float",
   },
 ];
 const Home = ({ navigation, route }) => {
+  const [filter, setFilter] = React.useState(array);
+
   return (
     <View>
       <Text>Welcome, Jala!</Text>
@@ -76,6 +82,9 @@ const Home = ({ navigation, route }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
+          onPress={() => {
+            setFilter(array);
+          }}
         >
           <Text>Donut</Text>
         </TouchableOpacity>
@@ -86,6 +95,12 @@ const Home = ({ navigation, route }) => {
             height: 30,
             justifyContent: "center",
             alignItems: "center",
+          }}
+          onPress={() => {
+            var newArr = array.filter((item) => {
+              return item.type == "pink";
+            });
+            setFilter([...newArr]);
           }}
         >
           <Text>Pink Donut</Text>
@@ -98,12 +113,18 @@ const Home = ({ navigation, route }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
+          onPress={() => {
+            var newArray = array.filter((item) => {
+              return item.type == "float";
+            });
+            setFilter([...newArray]);
+          }}
         >
           <Text>Floating</Text>
         </TouchableOpacity>
       </View>
       <FlatList
-        data={array}
+        data={filter}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity

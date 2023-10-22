@@ -3,7 +3,12 @@ import { StyleSheet, Text, View } from "react-native";
 import Navigation from "./Navigation";
 import Navigation1 from "./Navigation1";
 export default function App() {
-  return <Navigation1 />;
+  return (
+    <View style={{ flex: 1 }}>
+      {/* <Navigation1 /> */}
+      <Navigation />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({});
